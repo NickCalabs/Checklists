@@ -1,5 +1,5 @@
 //
-//  AddItemTableViewController.swift
+//  ItemDetailViewController.swift
 //  Checklists
 //
 //  Created by Nick on 3/16/15.
@@ -9,17 +9,34 @@
 import UIKit
 
 protocol AddItemViewControllerDelegate: class {
-    func addItemViewControllerDidCancel(controller:AddItemTableViewController)
-    func addItemViewController(controller: AddItemTableViewController, didFinishAddingItem item: ChecklistItem)
+    func addItemViewControllerDidCancel(controller:ItemDetailViewController)
+    func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: ChecklistItem)
+    func itemDetailViewController(controller: ItemDetailViewController, didFinishEditingItem item: ChecklistItem)
 }
 
 
-class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
+class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
+    var itemToEdit: ChecklistItem?
+    
     weak var delegate: AddItemViewControllerDelegate?
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.rowHeight = 44
+        
+        if let item = itemToEdit{
+            title = "Edit Item"
+            textField.text = item.text
+            doneBarButton.enabled = true
+        }
+    }
+    
     
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
@@ -36,11 +53,15 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         
         // dismissViewControllerAnimated(true, completion: nil) // was this before we added delegates
         
-        let item = ChecklistItem()
-        item.text = textField.text
-        item.checked = false
-        
-        delegate?.addItemViewController(self, didFinishAddingItem: item)
+        if let item = itemToEdit {
+            item.text = textField.text
+            delegate?.itemDetailViewController(self, didFinishEditingItem: item)
+        } else {
+            let item = ChecklistItem()
+            item.text = textField.text
+            item.checked = false
+            delegate?.itemDetailViewController(self, didFinishAddingItem: item)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

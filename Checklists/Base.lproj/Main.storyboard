@@ -35,6 +35,9 @@ FuKImg
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="rNu-Zd-V9L" kind="presentation" identifier="EditItem" trigger="accessoryAction" id="eyL-7P-zjv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -57,7 +60,7 @@ FuKImg
         <!--Add Item-->
         <scene sceneID="lHd-Wj-9mt">
             <objects>
-                <tableViewController id="xZu-IK-rE9" customClass="AddItemTableViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xZu-IK-rE9" customClass="ItemDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="M8d-A9-uak">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,4 +151,7 @@ FuKImg
             <point key="canvasLocation" x="1842" y="429"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eyL-7P-zjv"/>
+    </inferredMetricsTieBreakers>
 </document>
