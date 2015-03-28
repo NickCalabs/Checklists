@@ -120,6 +120,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
 //        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
 //        let indexPaths = [indexPath]
 //        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    
 //    }
     
     
