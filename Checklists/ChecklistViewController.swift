@@ -60,6 +60,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         return items.count
     }
     
+    //Feeds cells info
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChecklistItem") as UITableViewCell
         
@@ -71,7 +72,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         return cell
     }
     
-
+    //decides whcich row corresponds to the cell selected
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
@@ -85,6 +86,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         
     }
     
+    //for deleting cells
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         //1
         items.removeAtIndex(indexPath.row)
@@ -94,6 +96,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     }
     
+    //adding checkmarks
     func configureCheckmarkForCell(cell:UITableViewCell, withChecklistItem item: ChecklistItem){
         let label = cell.viewWithTag(1001) as UILabel
         if item.checked{
@@ -102,6 +105,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
             label.text = ""
         }
     }
+    
     
     func configureTextForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem){
         let label = cell.viewWithTag(1000) as UILabel
