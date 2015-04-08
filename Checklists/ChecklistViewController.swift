@@ -176,11 +176,13 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
     func documentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true) as [String]
+        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true) as [String]
         return paths[0]
     }
     
     func dataFilePath() -> String {
         return documentsDirectory().stringByAppendingPathComponent("Checklists.plist")
+        return documentsDirectory().stringByAppendingPathComponent("Checkists.plist")
     }
 }
 
